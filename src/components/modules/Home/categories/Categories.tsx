@@ -2,11 +2,11 @@
 import React from 'react';
 import Category from './Category';
 import { CategoriesFilter } from '@/constant';
+import { Button } from '@/components/ui/button';
 
-const Categories = () => {
-    const handleCategories=()=>{
-        console.log('Categories')
-    }
+
+const Categories = ({handleHomeCategories}) => {
+  
     return (
         <div className="lg:w-[90%] w-[95%] mx-auto my-12">
             <h1 className="text-4xl font-extrabold text-center mb-12 text-gray-800">
@@ -17,18 +17,13 @@ const Categories = () => {
             CategoriesFilter.map((category, index)=>(
             <div 
             key={index} 
-            onClick={handleCategories}
+            onClick={()=>{handleHomeCategories(category.title)}}
             ><Category category={category} ></Category></div>))
         }
-      
-      {/* <div onClick={handleCategories}><Category ></Category></div> */}
     
-     
-     
-      
       </div>
       
-            
+            <Button onClick={()=>{handleHomeCategories('All')}}>View All</Button>
         </div>
     );
 };

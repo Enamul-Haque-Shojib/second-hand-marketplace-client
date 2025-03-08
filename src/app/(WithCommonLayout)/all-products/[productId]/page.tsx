@@ -6,7 +6,7 @@ const ProductDetails = async({params}) => {
  
     const {productId} = await params;
     const { data: product } = await getSingleProduct(productId);
-    console.log(product);
+    
 
     return (
         <div className='w-[90%] mx-auto'>

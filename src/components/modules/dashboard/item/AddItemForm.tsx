@@ -24,6 +24,7 @@ import {
     SelectValue,
   } from "@/components/ui/select";
 import { toast } from 'sonner';
+import { useUser } from '@/context/UserContext';
 
 // import { useToast } from '@/hooks/use-toast';
 // import { useSession } from 'next-auth/react';
@@ -32,7 +33,7 @@ const AddItemForm = () => {
     // const {data: session} = useSession();
     //     const email = session?.user?.email || "";
 
-
+const {user} = useUser()
     const [imagePreview, setImagePreview] = useState<string | null>(null);
    
 
@@ -59,14 +60,14 @@ const AddItemForm = () => {
             title: data.title,
             image,
             description: data.description,
-            userId:'67be8edf4e5085edde435d79',
+            userId: user?._id,
         
             condition: data.condition,
             price: parseFloat(data.price),
             category: data.category,
         };
 
-    
+    console.log(initialData)
 
         try {
             

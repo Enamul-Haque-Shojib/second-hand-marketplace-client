@@ -65,7 +65,7 @@ export const verifyUserFromDB = async (email:string) => {
 
 export const getCurrentUser = async () => {
   const accessToken = (await cookies()).get("secondHandMarketplace_accessToken")?.value;
-  console.log(accessToken);
+  
   let decodedData = null;
 
   if (accessToken) {

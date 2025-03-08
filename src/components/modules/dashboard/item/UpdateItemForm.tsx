@@ -106,7 +106,7 @@ const UpdateItemForm = () => {
 
         try {
             const res = await updateItem(updatedItem, params?.itemId);
-            router.push('/user/all-items')
+            router.push('/dashboard/listing')
             toast.success(res.message);
         } catch (error) {
             console.error("Error submitting form:", error);

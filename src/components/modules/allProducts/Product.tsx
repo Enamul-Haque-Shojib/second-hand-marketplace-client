@@ -21,7 +21,7 @@ import Link from 'next/link';
 
 const Product = ({product}) => {
     const {_id,title, condition, userId, category,price, image} = product;
-    console.log(product)
+    
     return (
         <Card className="w-[350px]">
         <CardHeader>

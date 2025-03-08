@@ -17,14 +17,16 @@ interface IUserProviderValues {
   isLoading: boolean;
   setUser: (user: IUser | null) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  
 }
 
 const UserContext = createContext<IUserProviderValues | undefined>(undefined);
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
-  console.log(user);
+  console.log(user?.email);
   const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
   
 
@@ -52,7 +54,7 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>
+    <UserContext.Provider value={{ user, setUser, isLoading, setIsLoading, products, setProducts }}>
       {children}
     </UserContext.Provider>
   );

@@ -9,14 +9,19 @@ import { loginUser } from '@/services/authService';
 
 // import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
   const {setUser,setIsLoading} = useUser();
-  const router = useRouter();
   
+  
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -52,8 +57,16 @@ const LoginForm = () => {
       form.reset();
       setIsLoading(true)
       setUser(res?.data?.user)
-      router.push('/');
-      toast.success(res.message);
+      if (res?.success) {
+        toast.success(res?.message);
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
+        }
+      } else {
+        toast.error(res?.message);
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error(error.message);

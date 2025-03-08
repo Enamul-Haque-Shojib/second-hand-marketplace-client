@@ -1,8 +1,12 @@
+'use client'
+
 import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Input } from "@/components/ui/input";
+
 
 const Banner = () => {
+
+ 
   return (
     <AspectRatio ratio={16 / 6} className="bg-muted">
       <div
@@ -33,7 +37,7 @@ const Banner = () => {
           >
             Second Hand Marketplace
           </h1>
-          <Input type="email" placeholder="Email" className="bg-white" />
+         
           <p className="text-lg md:text-xl lg:text-2xl font-medium max-w-2xl text-black">
             Secure, fast, and reliable parcel tracking made effortless. Manage
             your deliveries with ease and confidence.

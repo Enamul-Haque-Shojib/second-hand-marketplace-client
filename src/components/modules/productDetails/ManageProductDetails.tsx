@@ -35,6 +35,7 @@ const ManageProductDetails = ({product}) => {
           sellerId: userId?._id,
           itemId: _id
         }
+        console.log(transactionData);
         const res = await addTransaction(transactionData);
         toast.success('successfully transaction')
       } catch (error) {

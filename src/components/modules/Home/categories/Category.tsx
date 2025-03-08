@@ -11,9 +11,9 @@ import {
 import Image from 'next/image';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 const Category = ({category}) => {
-  console.log(category)
+  
     return (
-        <div className="w-[300px] border rounded-lg cursor-pointer">
+        <div className="w-[300px] border rounded-lg cursor-pointer" >
         <AspectRatio ratio={16 / 9} className="bg-muted ">
             <Image
                 src={category.image}

@@ -47,11 +47,20 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
     }
   };
 
-  export const getAllItems = async () => {
+  export const getAllItems = async (condition: string, search:string) => {
+    console.log(condition);
+    let url='';
+    if(condition==='search'){
+      url=`http://localhost:5000/api/listings?searchTerm=${search}`
+    }else if(condition === 'category'){
+      url=`http://localhost:5000/api/listings?category=${search}`
+    }else{
+      url=`http://localhost:5000/api/listings`
+    }
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/listings`,
+        url,
         {
           next: {
             tags: ["PRODUCT"],
@@ -59,6 +68,7 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
         }
       );
       const data = await res.json();
+      console.log(data);
       return data;
     } catch (error: any) {
       return Error(error.message);
@@ -74,6 +84,7 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
             
         }
     );
+    
     revalidateTag("PRODUCT");
     const itemData = res.json();
     return itemData;

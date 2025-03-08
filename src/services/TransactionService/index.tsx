@@ -52,7 +52,7 @@ export const updateTransaction = async (id: string): Promise<any> => {
         `http://localhost:5000/api/transactions/purchase/${userId}`,
         {
           next: {
-            tags: ["PRODUCT"],
+            tags: ["TRANSACTION"],
           },
         }
       );
@@ -70,7 +70,7 @@ export const updateTransaction = async (id: string): Promise<any> => {
         `http://localhost:5000/api/transactions/sales/${userId}`,
         {
           next: {
-            tags: ["PRODUCT"],
+            tags: ["TRANSACTION"],
           },
         }
       );

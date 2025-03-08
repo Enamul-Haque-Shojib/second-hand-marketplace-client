@@ -15,10 +15,23 @@ import {
   } from "@/components/ui/table"
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
-
+interface Sale {
+  _id: string;
+  buyerId: {
+    authName: string;
+    email: string;
+    authImgUrl: string;
+  };
+  itemId: {
+    title: string;
+    price: number;
+    image: string;
+  };
+  status: string;
+}
 const ManageTrackSales = () => {
     const {user} = useUser();
-     const [sales, setSales] = useState([]);
+    const [sales, setSales] = useState<Sale[]>([]);
      console.log(sales)
         useEffect(() => {
     
@@ -33,10 +46,30 @@ const ManageTrackSales = () => {
             getSalesData();
         },[user?._id]);
 
-        const handleComplete=async(id)=>{
+        // const handleComplete=async(id)=>{
+        //     const res = await updateTransaction(id);
+        //     console.log(res)
+        //   }
+
+
+        const handleComplete = async (id: string) => {
+          try {
             const res = await updateTransaction(id);
-            console.log(res)
+        
+            if (res?.success) {
+              setSales((prevSales) =>
+                prevSales.map((sale) => 
+                  sale && typeof sale === "object" && sale._id === id
+                    ? { ...sale, status: "Completed" } 
+                    : sale
+                )
+              );
+            }
+          } catch (error) {
+            console.error("Error updating transaction:", error);
           }
+        };
+
     return (
         <div>
             <h1>manage track sales </h1>

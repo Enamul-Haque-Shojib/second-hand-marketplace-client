@@ -25,7 +25,7 @@ const ManageItems = () => {
     const [items,setItems] = useState([]);
 
     const fetchAllItems= async() => {
-      const res = await getAllItems();
+      const res = await getAllItems('','');
       
       setItems(res?.data);
     }
@@ -38,7 +38,7 @@ const ManageItems = () => {
     }
     const handleDelete=async(id)=>{
       const res = await deleteItem(id);
-      console.log(res)
+      setItems((prevItems) => prevItems.filter((item) => item._id !== id));
     }
     return (
         <div>
