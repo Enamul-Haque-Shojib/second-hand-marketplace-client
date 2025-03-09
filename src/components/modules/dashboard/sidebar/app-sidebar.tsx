@@ -17,6 +17,7 @@ import { NavUser } from "./nav-user";
 import Link from "next/link";
 // import Logo from "@/assets/svgs/Logo";
 import { ChartSpline, User, Package, BookDown,LogOut,Gauge, Users, List, PackagePlus, Heart, LayoutList } from "lucide-react";
+import { useUser } from "@/context/UserContext";
 
 const data = {
   
@@ -38,7 +39,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-    const role = 'user'
+    const {user} = useUser()
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -60,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         {
-            role == 'admin' ? <NavMain items={data.Admin} /> : <NavMain items={data.User} />
+            user?.role == 'admin' ? <NavMain items={data.Admin} /> : <NavMain items={data.User} />
         }
         
       </SidebarContent>

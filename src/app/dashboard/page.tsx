@@ -1,10 +1,20 @@
+
+
+
+import ManageProfile from '@/components/modules/dashboard/ManageDashboard';
 import React from 'react';
 
 const UserDashboard = () => {
+
+
+
+
+
+    
     return (
         <div>
-            <h1>User Dashboard</h1>
-        </div>
+       <ManageProfile></ManageProfile>
+      </div>
     );
 };
 
