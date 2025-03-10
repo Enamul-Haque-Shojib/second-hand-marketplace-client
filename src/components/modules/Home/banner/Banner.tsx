@@ -39,8 +39,8 @@ const Banner = () => {
           </h1>
          
           <p className="text-lg md:text-xl lg:text-2xl font-medium max-w-2xl text-black">
-            Secure, fast, and reliable parcel tracking made effortless. Manage
-            your deliveries with ease and confidence.
+            Secure, fast, and reliable product tracking made effortless. Manage
+            your products with ease and confidence.
           </p>
       
         </div>

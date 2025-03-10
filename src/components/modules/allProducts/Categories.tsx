@@ -7,7 +7,7 @@ interface CategoriesProps {
 
 const Categories: React.FC<CategoriesProps> = ({ handleCategories }) => {
     return (
-        <div className='bg-gray-100 p-5 rounded-lg lg:w-[20%] w-full sticky top-20'>
+        <div className='bg-gray-100 p-5 rounded-lg lg:w-[20%] w-full sticky top-48'>
             <div className='border' onClick={() => handleCategories('All')}>
                 All
             </div>

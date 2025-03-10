@@ -1,4 +1,6 @@
 
+
+
 import React from "react";
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
@@ -13,17 +15,19 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({ category }) => {
   return (
-    <div className="w-[300px] border rounded-lg cursor-pointer">
+    <div className="rounded-lg overflow-hidden">
       <AspectRatio ratio={16 / 9} className="bg-muted">
         <Image
           src={category.image}
           alt={category.title}
           fill
-          className="h-full w-full rounded-md object-cover"
+          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
         />
       </AspectRatio>
-      <CardHeader>
-        <CardTitle className="my-3 text-center text-xl">{category.title}</CardTitle>
+      <CardHeader className="text-center py-4">
+        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
+          {category.title}
+        </CardTitle>
       </CardHeader>
     </div>
   );

@@ -31,6 +31,7 @@ import React from 'react';
 
 const ProductDetails = async ({ params }: any) => {
   const { productId } : any = params;
+  console.log(productId);
   const { data: product } = await getSingleProduct(productId);
 
   return (

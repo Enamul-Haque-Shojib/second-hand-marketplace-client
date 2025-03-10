@@ -15,6 +15,7 @@ import {
   } from "@/components/ui/table"
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
+import { toast } from 'sonner';
 interface Sale {
   _id: string;
   buyerId: {
@@ -62,6 +63,7 @@ const ManageTrackSales = () => {
                 )
               );
             }
+            toast.success('Transaction completed successfully')
           } catch (error) {
             console.error("Error updating transaction:", error);
           }

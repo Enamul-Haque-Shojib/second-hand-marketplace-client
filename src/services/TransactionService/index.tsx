@@ -9,7 +9,9 @@ import { cookies } from "next/headers";
 export const addTransaction = async (transactionData: ITransaction): Promise<any> => {
     
     try {
-      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/transactions/create-transaction`, {
+      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/transactions/create-transaction`, 
+
+        {
         method: "POST",
         body: JSON.stringify(transactionData),
       
