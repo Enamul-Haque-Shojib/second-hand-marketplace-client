@@ -139,7 +139,7 @@ const {user} = useUser()
                                 <FormItem>
                                     <FormLabel>Price</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Enter GitHub link" required {...field} />
+                                        <Input placeholder="Enter Price" required {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -159,7 +159,7 @@ const {user} = useUser()
                   required
                 >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a type" />
+                    <SelectValue placeholder="Select a condition" />
                   </SelectTrigger>
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
@@ -191,7 +191,7 @@ const {user} = useUser()
           rules={{ required: "Category man is required." }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select Condition</FormLabel>
+              <FormLabel>Select Category</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
@@ -199,7 +199,7 @@ const {user} = useUser()
                   required
                 >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a type" />
+                    <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
@@ -219,7 +219,7 @@ const {user} = useUser()
         />
 
                             <Button type="submit" className="w-full bg-[#ff004f] hover:bg-red-700 transition">
-                                Submit
+                                Add Item
                             </Button>
                         </form>
                     </Form>
