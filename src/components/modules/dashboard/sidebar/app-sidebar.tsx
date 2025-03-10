@@ -32,7 +32,7 @@ const data = {
           { title: "Manage Listings", url: "/dashboard/listing", icon: Package },
           { title: "Track Purchases", url: "/dashboard/purchase-history", icon: Package },
           { title: "Track Sales", url: "/dashboard/sales-history", icon: Package },
-          { title: "WishList", url: "/dashboard/wishlist", icon: Heart },
+          // { title: "WishList", url: "/dashboard/wishlist", icon: Heart },
           { title: "Profile", url: "/dashboard/profile", icon: User },
         ],
      

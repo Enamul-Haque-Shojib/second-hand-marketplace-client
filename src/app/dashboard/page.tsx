@@ -1,7 +1,8 @@
 
 
 
-import ManageProfile from '@/components/modules/dashboard/ManageDashboard';
+
+import ManageDashboard from '@/components/modules/dashboard/ManageDashboard';
 import React from 'react';
 
 const UserDashboard = () => {
@@ -13,7 +14,7 @@ const UserDashboard = () => {
     
     return (
         <div>
-       <ManageProfile></ManageProfile>
+       <ManageDashboard></ManageDashboard>
       </div>
     );
 };

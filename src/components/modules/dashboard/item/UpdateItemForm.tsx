@@ -25,9 +25,10 @@ import { updateItem } from "@/services/itemService";
 import { TItem } from "@/types/item";
 import createImage from "@/services/imageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useUser } from "@/context/UserContext";
 
 const UpdateItemForm = () => {
-  
+  const {user} = useUser();
     const router = useRouter();
     const params : {itemId: string} = useParams(); 
     
@@ -90,7 +91,7 @@ const UpdateItemForm = () => {
             image = await createImage(data.image[0]);
         }
 
-     
+     console.log(image);
 
         const updatedItem = {
             title: data.title,
@@ -99,7 +100,7 @@ const UpdateItemForm = () => {
             condition: data.condition,
             price: parseFloat(data.price),
             category: data.category,
-            userId:'67be8edf4e5085edde435d79',
+            userId:user?._id,
         };
 
        

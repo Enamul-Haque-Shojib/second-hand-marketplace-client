@@ -16,7 +16,7 @@ const createImage = async (file: File) => {
             formData
         );
 
-       
+     
         return response.data.secure_url; 
     } catch (error) {
         console.error("Error uploading image:", error);

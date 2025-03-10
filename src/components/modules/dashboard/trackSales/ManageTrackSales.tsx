@@ -34,7 +34,7 @@ const ManageTrackSales = () => {
     const [sales, setSales] = useState<Sale[]>([]);
      console.log(sales)
         useEffect(() => {
-    
+          if (!user?._id) return;
             const getSalesData=async()=>{
                 try {
                     const salesData = await getAllSales(user?._id)

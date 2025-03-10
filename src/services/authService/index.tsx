@@ -26,6 +26,23 @@ export const registerUser = async (userData: FieldValues) => {
     return Error(error);
   }
 };
+export const updateUser = async (userData: FieldValues, id: string) => {
+  try {
+    const res = await fetch(`http://localhost:5000/api/auth/update-auth/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+    const result = await res.json();
+
+
+    return result;
+  } catch (error: any) {
+    return Error(error);
+  }
+};
 
 export const loginUser = async (userData: FieldValues) => {
   try {
@@ -107,6 +124,24 @@ export const getAllFeedbacks = async () => {
   try {
     const res = await fetch(
       `http://localhost:5000/api/auth/feedback`,
+      {
+        next: {
+          tags: ["PRODUCT"],
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};
+
+
+export const getStatistics = async (userId: string) => {
+  try {
+    const res = await fetch(
+      `http://localhost:5000/api/auth/dashboard-auth/${userId}`,
       {
         next: {
           tags: ["PRODUCT"],

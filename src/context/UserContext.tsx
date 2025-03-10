@@ -24,7 +24,7 @@ const UserContext = createContext<IUserProviderValues | undefined>(undefined);
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
-  console.log(user?.email);
+  console.log(user);
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
