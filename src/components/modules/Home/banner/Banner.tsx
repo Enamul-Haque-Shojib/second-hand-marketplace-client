@@ -30,7 +30,7 @@ const Banner = () => {
         {/* Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+            className="text-xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
             style={{
               textShadow: "3px 3px 6px rgba(0, 0, 0, 0.7)",
             }}

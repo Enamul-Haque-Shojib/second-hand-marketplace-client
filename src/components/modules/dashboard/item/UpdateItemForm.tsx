@@ -192,7 +192,7 @@ const UpdateItemForm = () => {
                   required
                 >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a type" />
+                    <SelectValue placeholder="Select a condition" />
                   </SelectTrigger>
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
@@ -221,7 +221,7 @@ const UpdateItemForm = () => {
 <FormField
           control={form.control}
           name="category"
-          rules={{ required: "Category man is required." }}
+          rules={{ required: "Category is required." }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Select Condition</FormLabel>
@@ -232,7 +232,7 @@ const UpdateItemForm = () => {
                   required
                 >
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a type" />
+                    <SelectValue placeholder="Select a Category" />
                   </SelectTrigger>
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
@@ -252,7 +252,7 @@ const UpdateItemForm = () => {
         />
 
                             <Button type="submit" className="w-full bg-[#ff004f] hover:bg-red-700 transition">
-                                Submit
+                                Update item
                             </Button>
                         </form>
                     </Form>

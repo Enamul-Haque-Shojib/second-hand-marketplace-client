@@ -29,7 +29,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-2xl font-extrabold tracking-wider">
-          SecondHand
+          Dream Shop
         </Link>
 
         {/* Desktop Navigation */}
@@ -152,6 +152,14 @@ const Navbar = () => {
               onClick={handleNavField}
             >
               Home
+            </Link>
+            <Link
+              href="/all-products"
+              className="block text-lg hover:text-indigo-500"
+              
+              onClick={handleNavField}
+            >
+              All Products
             </Link>
             
             {user ? (

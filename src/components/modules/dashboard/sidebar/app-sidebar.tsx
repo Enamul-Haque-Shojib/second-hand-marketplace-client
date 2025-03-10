@@ -49,10 +49,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <Link href="/">
                 <div className="flex items-center justify-center">
                   {/* <Logo /> */}
-                  <h1 className="text-3xl">SH</h1>
+                  <h1 className="text-xl">DS</h1>
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <h2 className="font-bold text-xl">NextMart</h2>
+                  <h2 className="font-bold text-xl">Dream Shop</h2>
                 </div>
               </Link>
             </SidebarMenuButton>

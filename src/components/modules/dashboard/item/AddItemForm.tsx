@@ -27,6 +27,7 @@ import {
 import { toast } from 'sonner';
 import { useUser } from '@/context/UserContext';
 import { TItem } from '@/types/item';
+import { CategoriesFilter } from '@/constant';
 
 
 // import { useSession } from 'next-auth/react';
@@ -204,10 +205,10 @@ const {user} = useUser()
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
                       <SelectLabel>Category</SelectLabel>
+                      {
+                        CategoriesFilter.map((category, index) =><SelectItem key={index} value={category.title}>{category.title}</SelectItem>)
+                      }
                       
-                      <SelectItem value='Electric'>Electric</SelectItem>
-                      <SelectItem value='Laptop'>Laptop</SelectItem>
-                      <SelectItem value='Book'>Book</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>

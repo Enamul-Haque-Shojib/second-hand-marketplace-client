@@ -15,11 +15,25 @@ export const CategoriesFilter = [
         title: 'Camera',
         image: 'https://img.freepik.com/free-photo/high-angle-photo-camera-indoors-still-life_23-2150630966.jpg?semt=ais_hybrid'
     },
+    {
+        title: 'Headphone',
+        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcSw5xOfn5ciUkmFfFpTa2As1U0EYT__h9v5kswdtGt_nZIGEwdMaQqsIMzs8tIcxOcC0&usqp=CAU'
+    },
+    {
+        title: 'Motorcycle',
+        image: 'https://ridermagazine.com/wp-content/uploads/2019/08/2020-Aprilia-RS-660-3qtr-featured.jpg'
+    },
+   
+    {
+        title: 'Bicycle',
+        image: 'https://www.pashley.co.uk/cdn/shop/files/pashley-kingsman-bicycle-royal-blue_1800x.jpg?v=1683215278'
+    },
+    {
+        title: 'Watch',
+        image: 'https://www.gadstyle.com/wp-content/uploads/2024/08/samsung-galaxy-watch-7-ai-smart-watch-40mm-44mm-2.webp'
+    },
+   
 
-    //   'Camera',
-    //   'Headphone',
-    //   'Motorcycle',
-    //   'Bicycle',
-    //    'Shoes', 
-    //    'Watch'
+
+ 
 ]
