@@ -4,7 +4,7 @@
 
 import { useUser } from "@/context/UserContext";
 import { logout } from "@/services/authService";
-import { Menu, UserRound, X } from "lucide-react";
+import { Menu,X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -37,24 +37,18 @@ const Navbar = () => {
           <Link
             href="/"
             className="transition duration-300 hover:text-yellow-300"
-            activeclassname="text-yellow-300"
+
           >
             Home
           </Link>
           <Link
             href="/all-products"
             className="transition duration-300 hover:text-yellow-300"
-            activeclassname="text-yellow-300"
+   
           >
             All Products
           </Link>
-          <Link
-            href="/about"
-            className="transition duration-300 hover:text-yellow-300"
-            activeclassname="text-yellow-300"
-          >
-            About
-          </Link>
+         
           {user ? (
             <>
             {
@@ -63,7 +57,7 @@ const Navbar = () => {
               
                 href="/dashboard"
                 className="transition duration-300 hover:text-yellow-300"
-                activeclassname="text-yellow-300"
+             
               >
                 Dashboard
               </Link>
@@ -72,21 +66,23 @@ const Navbar = () => {
               
                 href={`/dashboard/${user?.role}`}
                 className="transition duration-300 hover:text-yellow-300"
-                activeclassname="text-yellow-300"
+              
               >
                 Dashboard
               </Link>
               }
               
               <div className="relative">
-                <Image
-                  src={user?.authImgUrl || UserRound}
-                  alt="User"
-                  width={50}
-                  height={50}
-                  onClick={toggleDropdown}
-                  className="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
-                />
+                 {user?.authImgUrl && (
+                             <Image
+                            src={user?.authImgUrl}
+                             alt="User"
+                             width={50}
+                             height={50}
+                             onClick={toggleDropdown}
+                             className="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
+                           />
+                          )}
                 {dropdownOpen && (
                   <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-48">
                     <div className="px-4 py-2">
@@ -152,19 +148,12 @@ const Navbar = () => {
             <Link
               href="/"
               className="block text-lg hover:text-indigo-500"
-              activeclassname="text-indigo-500"
+              
               onClick={handleNavField}
             >
               Home
             </Link>
-            <Link
-              href="/about"
-              className="block text-lg hover:text-indigo-500"
-              activeclassname="text-indigo-500"
-              onClick={handleNavField}
-            >
-              About
-            </Link>
+            
             {user ? (
               <>
                 <Link
@@ -186,7 +175,7 @@ const Navbar = () => {
                 <Link
                   href="/register"
                   className="block text-lg hover:text-indigo-500"
-                  activeclassname="text-indigo-500"
+                 
                   onClick={handleNavField}
                 >
                   Register
@@ -194,7 +183,7 @@ const Navbar = () => {
                 <Link
                   href="/login"
                   className="block text-lg hover:text-indigo-500"
-                  activeclassname="text-indigo-500"
+              
                   onClick={handleNavField}
                 >
                   Login

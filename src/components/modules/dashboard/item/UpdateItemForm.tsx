@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { TProject } from "@/actions/createProject";
+
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -51,7 +52,7 @@ const UpdateItemForm = () => {
     useEffect(() => {
         const fetchItem = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/listings/one-listing/${params?.itemId}`);
+                const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/listings/one-listing/${params?.itemId}`);
                 if (!res.ok) throw new Error("Failed to fetch item");
                 const data = await res.json();
                 const item = data.data;
@@ -91,9 +92,9 @@ const UpdateItemForm = () => {
             image = await createImage(data.image[0]);
         }
 
-     console.log(image);
-
-        const updatedItem = {
+    
+     if (!user?._id) return;
+        const updatedItem : TItem = {
             title: data.title,
             image: image,
             description: data.description,
@@ -109,7 +110,7 @@ const UpdateItemForm = () => {
             const res = await updateItem(updatedItem, params?.itemId);
             router.push('/dashboard/listing')
             toast.success(res.message);
-        } catch (error) {
+        } catch (error:any) {
             console.error("Error submitting form:", error);
            toast.error(error.message);
         }

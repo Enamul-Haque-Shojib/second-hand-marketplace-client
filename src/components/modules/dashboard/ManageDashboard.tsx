@@ -20,7 +20,7 @@ interface IStatistics {
 }
 
 const ManageDashboard = () => {
-  const { user, isLoading } = useUser();
+  const { user, isLoading, setIsLoading } = useUser();
 
   // // Initialize state with default values
   const [statistics, setStatistics] = useState<IStatistics>({
@@ -36,6 +36,7 @@ const ManageDashboard = () => {
       try {
         const statisticsData = await getStatistics(user._id);
         setStatistics(statisticsData?.data);
+        setIsLoading(false)
       } catch (error) {
         console.log(error);
       }

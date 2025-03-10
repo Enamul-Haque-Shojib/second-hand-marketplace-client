@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,39 +16,49 @@ import {
     Avatar,
     AvatarFallback,
     AvatarImage,
-  } from "@/components/ui/avatar"
+} from "@/components/ui/avatar";
 import { UserRound } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { addTransaction } from '@/services/TransactionService';
 import { toast } from 'sonner';
+import { TItem } from '@/types/item';  // Import the correct type for product
 
+interface ManageProductDetailsProps {
+  product: TItem;  // Explicitly type the product prop
+}
 
+const ManageProductDetails: React.FC<ManageProductDetailsProps> = ({ product }) => {
+  const { user, isLoading, setIsLoading } = useUser();
+  
+  const { _id, title, description, image, condition, category, price, userId, status } = product;
+  useEffect(() => {
+    if(product) setIsLoading(false);
+  },[product, setIsLoading])
 
-const ManageProductDetails = ({product}) => {
-  const {user} = useUser();
-
-    const {_id,title, description, image, condition, category, price, userId, status} = product;
-
-    const handleTransaction = async() =>{
-      try {
-        const transactionData = {
-          buyerId: user?._id,
-          sellerId: userId?._id,
-          itemId: _id
-        }
-        console.log(transactionData);
-        const res = await addTransaction(transactionData);
-        toast.success('successfully transaction')
-      } catch (error) {
-        toast.error(error.message)
-      }
+  const handleTransaction = async () => {
+    try {
+      const transactionData = {
+        buyerId: user?._id,
+        sellerId: userId?._id,
+        itemId: _id,
+      };
       
+      await addTransaction(transactionData);
       
+      toast.success('Successfully completed transaction');
+    } catch (error:any) {
+      toast.error(error.message);
     }
+  };
+  if(isLoading){
+    return <p>Loading.....</p>
+  }
 
-    return (
-        <div>
-             <Card className="flex flex-col lg:flex-row shadow-lg hover:shadow-xl transition-all overflow-hidden flex-grow">
+  
+
+  return (
+    <div>
+      <Card className="flex flex-col lg:flex-row shadow-lg hover:shadow-xl transition-all overflow-hidden flex-grow">
         <div className="lg:w-1/2 p-5">
           <AspectRatio ratio={16 / 9} className="bg-muted border">
             <Image
@@ -58,17 +69,15 @@ const ManageProductDetails = ({product}) => {
             />
           </AspectRatio>
           <div className='flex'>
-          <Avatar>
-      <AvatarImage src={userId?.authImgUrl} alt='user' />
-      <AvatarFallback><UserRound></UserRound></AvatarFallback>
-    </Avatar>
-    <div>
-    <h1>{userId?.authName}</h1>
-    <p>{userId?.email}</p>
-    </div>
-    
+            <Avatar>
+              <AvatarImage src={userId?.authImgUrl} alt='user' />
+              <AvatarFallback><UserRound /></AvatarFallback>
+            </Avatar>
+            <div>
+              <h1>{userId?.authName}</h1>
+              <p>{userId?.email}</p>
+            </div>
           </div>
-          
         </div>
         <div className="p-6 lg:w-1/2 flex flex-col justify-between">
           <CardHeader>
@@ -76,21 +85,26 @@ const ManageProductDetails = ({product}) => {
             <CardDescription className="mt-2 text-gray-600">{description}</CardDescription>
           </CardHeader>
           <CardContent>
-          <p>Category: {category}</p>
-        <p>Condition: {condition}</p>
-        <p>Price: {price}</p>
-        <p>Status: {status}</p>
+            <p>Category: {category}</p>
+            <p>Condition: {condition}</p>
+            <p>Price: {price}</p>
+            <p>Status: {status}</p>
           </CardContent>
           <CardFooter className="flex gap-4 mt-4">
-      
-              <Button variant="outline" onClick={handleTransaction}>Buy Now</Button>
-        
-           
-          </CardFooter>
+            {
+              user &&  (user?._id !== userId?._id  && ( 
+                <Button variant="outline" onClick={handleTransaction}>
+                  Buy Now
+                </Button>
+               ) )
+            }
+ 
+</CardFooter>
+
         </div>
-            </Card>
-        </div>
-    );
+      </Card>
+    </div>
+  );
 };
 
 export default ManageProductDetails;

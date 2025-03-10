@@ -16,7 +16,7 @@ import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Link from "next/link";
 // import Logo from "@/assets/svgs/Logo";
-import { ChartSpline, User, Package, BookDown,LogOut,Gauge, Users, List, PackagePlus, Heart, LayoutList } from "lucide-react";
+import { User, Package,Gauge, Users, List } from "lucide-react";
 import { useUser } from "@/context/UserContext";
 
 const data = {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 "use client";
@@ -28,7 +29,7 @@ import { updateUser } from "@/services/authService";
 
 const UpdateProfile = () => {
     const {user, setUser} = useUser();
-console.log(user)
+
 
     const [imagePreview, setImagePreview] = useState<string>('');
  
@@ -44,14 +45,16 @@ console.log(user)
                     });
 
            useEffect(() => {
+
             const fetchItem = async () => {
+                
                 if(user){
                     try {
-                        const res = await fetch(`http://localhost:5000/api/auth/one-auth/${user?.email}`);
+                        const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/auth/one-auth/${user?.email}`);
                         if (!res.ok) throw new Error("Failed to fetch item");
                         const data = await res.json();
                         const userData = data.data;
-                     console.log(userData)
+                    
         
                         form.reset({
                             authName: userData?.authName,
@@ -99,10 +102,11 @@ console.log(user)
            
     
             try {
+                if (!user?._id) return;
                 const res = await updateUser(updatedUser, user?._id);
                setUser(res?.data)
                 toast.success(res.message);
-            } catch (error) {
+            } catch (error:any) {
                 console.error("Error submitting form:", error);
                toast.error(error.message);
             }
@@ -116,7 +120,7 @@ console.log(user)
            <DialogHeader>
              <DialogTitle>Edit profile</DialogTitle>
              <DialogDescription>
-               Make changes to your profile here. Click save when you're done.
+               Make changes to your profile here. Click save when you`re done.
              </DialogDescription>
            </DialogHeader>
                     <Form {...form}>

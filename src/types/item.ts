@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 // export interface IUser {
     
@@ -19,7 +20,13 @@ export interface IUser {
     
   }
   
-
+export interface ITransaction {
+  _id?: string;
+  buyerId: any;
+  sellerId: any;
+  itemId: any;
+  status?: string;
+}
 
 
 
@@ -28,9 +35,10 @@ export type TItem={
     title: string,
             image:string,
             description: string,
-            userId:string,
-            status: string,
+            userId:any,
+            status?: string,
             condition: string,
             price: number,
             category: string,
+            
 }

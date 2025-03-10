@@ -12,7 +12,7 @@ const createImage = async (file: File) => {
 
     try {
         const response = await axios.post(
-            `https://api.cloudinary.com/v1_1/dqsm6ybdu/image/upload`,
+            `${process.env.IMAGE_UPLOAD_CLOUDINARY}`,
             formData
         );
 

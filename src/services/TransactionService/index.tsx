@@ -1,18 +1,20 @@
 
 "use server"
+import { ITransaction } from "@/types/item";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 
-export const addTransaction = async (transactionData: FormData): Promise<any> => {
+export const addTransaction = async (transactionData: ITransaction): Promise<any> => {
     
     try {
-      const res = await fetch(`http://localhost:5000/api/transactions/create-transaction`, {
+      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/transactions/create-transaction`, {
         method: "POST",
         body: JSON.stringify(transactionData),
       
         headers: {
-        //   Authorization: (await cookies()).get("accessToken")!.value,
+          Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
         "Content-Type": "application/json",
         },
         // cache: 'no-store'
@@ -29,10 +31,10 @@ export const addTransaction = async (transactionData: FormData): Promise<any> =>
 export const updateTransaction = async (id: string): Promise<any> => {
     
     try {
-      const res = await fetch(`http://localhost:5000/api/transactions/update-transaction/${id}`, {
+      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/transactions/update-transaction/${id}`, {
         method: "PATCH",
         headers: {
-        //   Authorization: (await cookies()).get("accessToken")!.value,
+          Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
         "Content-Type": "application/json",
         },
         // cache: 'no-store',
@@ -49,7 +51,7 @@ export const updateTransaction = async (id: string): Promise<any> => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/transactions/purchase/${userId}`,
+        `https://second-hand-marketplace-server.vercel.app/api/transactions/purchase/${userId}`,
         {
           next: {
             tags: ["TRANSACTION"],
@@ -67,7 +69,7 @@ export const updateTransaction = async (id: string): Promise<any> => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/transactions/sales/${userId}`,
+        `https://second-hand-marketplace-server.vercel.app/api/transactions/sales/${userId}`,
         {
           next: {
             tags: ["TRANSACTION"],

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 
@@ -8,9 +9,6 @@ import { Input } from '@/components/ui/input';
 import { useUser } from '@/context/UserContext';
 import { registerUser } from '@/services/authService';
 import createImage from '@/services/imageUpload';
-
-
-
 
 // import { signIn } from 'next-auth/react';
 import Image from 'next/image';
@@ -44,16 +42,16 @@ const RegisterForm = () => {
         email: data.email,
         password: data.password,
       };
-      // console.log(initialData);
+      
 
       const res = await registerUser(initialData);
-      console.log(res)
+      
       form.reset();
       router.push('/');
       setIsLoading(true)
       setUser(res?.data?.user)
       toast.success(res.message);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting form:', error);
       toast.error(error.message);
     }

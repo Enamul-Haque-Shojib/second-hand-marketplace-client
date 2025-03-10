@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import Categories from './Categories';
 import AllProducts from './AllProducts';
 import { getAllItems } from '@/services/itemService';
 import { useUser } from '@/context/UserContext';
 
 const ManageAllProducts = () => {
-    const{products, setProducts} = useUser();
+    const{setProducts} = useUser();
     // const [products, setProducts] = useState([])
     
     
@@ -36,7 +36,7 @@ const ManageAllProducts = () => {
             }
             const res = await getAllItems(con,cat);
             setProducts(res?.data);
-            console.log(res?.data)
+            
         } catch (error) {
             console.log(error)
         }

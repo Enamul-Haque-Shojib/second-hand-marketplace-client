@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { revalidateTag } from "next/cache";
@@ -6,10 +7,10 @@ import { cookies } from "next/headers";
 // create category
 export const createCategory = async (data: FormData) => {
   try {
-    const res = await fetch(`http://localhost:3001/api/v1/category`, {
+    const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/category`, {
       method: "POST",
       headers: {
-        Authorization: (await cookies()).get("accessToken")!.value,
+        Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
       },
       body: data,
     });
@@ -25,7 +26,7 @@ export const createCategory = async (data: FormData) => {
 //get all categories
 export const getAllCategories = async () => {
   try {
-    const res = await fetch(`http://localhost:3001/api/v1/category`, {
+    const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/category`, {
       next: {
         tags: ["CATEGORY"],
       },
@@ -41,11 +42,11 @@ export const getAllCategories = async () => {
 export const deleteCategory = async (categoryId: string): Promise<any> => {
   try {
     const res = await fetch(
-      `http://localhost:3001/api/v1/category/${categoryId}`,
+      `https://second-hand-marketplace-server.vercel.app/api/category/${categoryId}`,
       {
         method: "DELETE",
         headers: {
-          Authorization: (await cookies()).get("accessToken")!.value,
+          Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
         },
       }
     );

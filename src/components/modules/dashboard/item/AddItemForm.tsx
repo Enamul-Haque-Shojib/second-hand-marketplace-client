@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 'use client';
 
@@ -7,7 +8,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { X } from 'lucide-react';
+
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -25,8 +26,9 @@ import {
   } from "@/components/ui/select";
 import { toast } from 'sonner';
 import { useUser } from '@/context/UserContext';
+import { TItem } from '@/types/item';
 
-// import { useToast } from '@/hooks/use-toast';
+
 // import { useSession } from 'next-auth/react';
 
 const AddItemForm = () => {
@@ -56,7 +58,7 @@ const {user} = useUser()
         const imageFile = data.image?.[0];
         const image = await createImage(imageFile);
 
-        const initialData= {
+        const initialData:TItem= {
             title: data.title,
             image,
             description: data.description,
@@ -67,16 +69,16 @@ const {user} = useUser()
             category: data.category,
         };
 
-    console.log(initialData)
+    
 
         try {
             
            const res = await addItem(initialData);
-            console.log(res);
+            
              form.reset();
              toast.success(res.message);
             // toast({ title: "Success", description: "Project added successfully!" });
-        } catch (error) {
+        } catch (error:any) {
             // toast({ variant: "destructive", title: "Error", description: "Failed to add project." });
             console.error('Error submitting form:', error);
             toast.error(error.message);

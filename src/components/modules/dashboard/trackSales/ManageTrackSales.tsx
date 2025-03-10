@@ -32,7 +32,7 @@ interface Sale {
 const ManageTrackSales = () => {
     const {user} = useUser();
     const [sales, setSales] = useState<Sale[]>([]);
-     console.log(sales)
+     
         useEffect(() => {
           if (!user?._id) return;
             const getSalesData=async()=>{
@@ -46,10 +46,7 @@ const ManageTrackSales = () => {
             getSalesData();
         },[user?._id]);
 
-        // const handleComplete=async(id)=>{
-        //     const res = await updateTransaction(id);
-        //     console.log(res)
-        //   }
+    
 
 
         const handleComplete = async (id: string) => {

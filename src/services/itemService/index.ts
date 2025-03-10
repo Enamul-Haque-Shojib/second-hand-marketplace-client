@@ -2,18 +2,19 @@
 
 
 "use server";
+import { TItem } from "@/types/item";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export const addItem = async (itemData: FormData): Promise<any> => {
+export const addItem = async (itemData: TItem): Promise<any> => {
     
     try {
-      const res = await fetch(`http://localhost:5000/api/listings/create-listing`, {
+      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/listings/create-listing`, {
         method: "POST",
         body: JSON.stringify(itemData),
       
         headers: {
-        //   Authorization: (await cookies()).get("accessToken")!.value,
+          Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
         "Content-Type": "application/json",
         },
         // cache: 'no-store'
@@ -27,15 +28,15 @@ export const addItem = async (itemData: FormData): Promise<any> => {
 
 
 
-export const updateItem = async (itemData: FormData, id: string): Promise<any> => {
+export const updateItem = async (itemData: TItem, id: string): Promise<any> => {
     
     try {
-      const res = await fetch(`http://localhost:5000/api/listings/update-listing/${id}`, {
+      const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/listings/update-listing/${id}`, {
         method: "PATCH",
         body: JSON.stringify(itemData),
       
         headers: {
-        //   Authorization: (await cookies()).get("accessToken")!.value,
+          Authorization: (await cookies()).get("secondHandMarketplace_accessToken")!.value,
         "Content-Type": "application/json",
         },
         // cache: 'no-store',
@@ -48,14 +49,14 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
   };
 
   export const getAllItems = async (condition: string, search:string) => {
-    console.log(condition);
+    
     let url='';
     if(condition==='search'){
-      url=`http://localhost:5000/api/listings?searchTerm=${search}`
+      url=`https://second-hand-marketplace-server.vercel.app/api/listings?searchTerm=${search}`
     }else if(condition === 'category'){
-      url=`http://localhost:5000/api/listings?category=${search}`
+      url=`https://second-hand-marketplace-server.vercel.app/api/listings?category=${search}`
     }else{
-      url=`http://localhost:5000/api/listings`
+      url=`https://second-hand-marketplace-server.vercel.app/api/listings`
     }
 
     try {
@@ -68,7 +69,27 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
         }
       );
       const data = await res.json();
-      console.log(data);
+      
+      return data;
+    } catch (error: any) {
+      return Error(error.message);
+    }
+  };
+  export const getUserItems = async (id:string) => {
+    
+  
+
+    try {
+      const res = await fetch(
+        `https://second-hand-marketplace-server.vercel.app/api/listings/user-listings/${id}`,
+        {
+          next: {
+            tags: ["PRODUCT"],
+          },
+        }
+      );
+      const data = await res.json();
+      
       return data;
     } catch (error: any) {
       return Error(error.message);
@@ -76,7 +97,7 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
   };
 
   const deleteItem = async(id: string) => {
-    const res = await fetch(`http://localhost:5000/api/listings/delete-listing/${id}`,
+    const res = await fetch(`https://second-hand-marketplace-server.vercel.app/api/listings/delete-listing/${id}`,
         {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json'},
@@ -94,7 +115,7 @@ export const updateItem = async (itemData: FormData, id: string): Promise<any> =
 export const getSingleProduct = async (productId: string) => {
   try {
     const res = await fetch(
-      `http://localhost:5000/api/listings/one-listing/${productId}`,
+      `https://second-hand-marketplace-server.vercel.app/api/listings/one-listing/${productId}`,
       {
         next: {
           tags: ["PRODUCT"],

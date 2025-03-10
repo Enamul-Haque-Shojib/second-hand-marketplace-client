@@ -2,7 +2,7 @@
 
 
 import { getAllItems } from '@/services/itemService';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Product from './Product';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useUser } from '@/context/UserContext';
 
-const AllProducts = () => {      //{products, setProducts}
+const AllProducts = () => {   
 const {products, setProducts} = useUser();
     
 
@@ -25,7 +25,7 @@ const {products, setProducts} = useUser();
         try{
           const res = await getAllItems('search',data.search);
           form.reset();
-          console.log(res.data)
+          
             setProducts(res.data);
         } catch (error) {
           console.error('Error submitting form:', error);
