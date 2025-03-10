@@ -27,6 +27,7 @@ import { TItem } from "@/types/item";
 import createImage from "@/services/imageUpload";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useUser } from "@/context/UserContext";
+import { CategoriesFilter } from "@/constant";
 
 const UpdateItemForm = () => {
   const {user} = useUser();
@@ -237,10 +238,9 @@ const UpdateItemForm = () => {
                   <SelectContent  className="w-auto p-0 bg-white border border-gray-200 shadow-lg rounded-md z-50">
                     <SelectGroup>
                       <SelectLabel>Category</SelectLabel>
-                      
-                      <SelectItem value='Electric'>Electric</SelectItem>
-                      <SelectItem value='Laptop'>Laptop</SelectItem>
-                      <SelectItem value='Book'>Book</SelectItem>
+                      {
+                        CategoriesFilter.map((category, index) =><SelectItem key={index} value={category.title}>{category.title}</SelectItem>)
+                      }
                     </SelectGroup>
                   </SelectContent>
                 </Select>
