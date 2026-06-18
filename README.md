@@ -32,3 +32,9 @@
 - bcrypt
 - mongoose
 - zod
+
+### **Credentials**
+ #### User:
+ - email: jack@gmail.com
+ - pass: 123456789
+ 
